@@ -5,6 +5,26 @@
 
 
 
+
+window.addEventListener('scroll', e=>{
+
+    // console.log(e.target.scrollingElement.scrollTop);
+
+
+    if (e.target.scrollingElement.scrollTop > -10 && e.target.scrollingElement.scrollTop < 650) {
+        
+            // document.querySelector("nav").setAttribute("class", "fixed-top")
+            document.querySelector("nav").classList.remove("fixed-top")
+    }else{
+        document.querySelector("nav").classList.add("fixed-top")
+
+    }
+
+
+
+})
+
+
 // Add scrollDetect callback function on window.addEventlistener('scroll', callback) Listener
 
 
@@ -28,6 +48,39 @@
 // Send the request
 
 
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', '../data/company_intro.json');
+xhr.onreadystatechange = function () {
+  if(xhr.readyState === 4 && xhr.status === 200) {
+    var news = JSON.parse(xhr.responseText);
+
+    console.log(news.data.length);
+    const news1 = document.querySelector(".gurvanmedee")
+    let strr = ''
+    news.data.forEach(e => {
+        strr +=`
+                    <div class="col-sm-12 col-md-4 col-xl-4 ">
+                      <div class="card  mt-3" >
+                          <div class="card-img-top">
+
+                              <img src="${e.thumbnail}" class="" alt="...">
+                          </div>
+                        <div class="card-body">
+                            <h2>${e.title}</h2>
+                            <p class="card-text c-gray">${e.content}</p>
+                                <a href="" class="c-orange">Learn more</a>
+                            </div>
+                        </div>
+                  </div>
+        
+        `
+    });
+    news1.innerHTML = strr
+
+  }
+};
+xhr.send();
 
 /*  Add subscription email action. When subscription POST request is successful, 
     change the email element and subscribe button into "Your subscription is successful" Text. 
