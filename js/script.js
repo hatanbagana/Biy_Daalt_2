@@ -98,6 +98,8 @@ xhr.onreadystatechange = function () {
         
         `;
     });
+
+    
     for(let key in news.data){
         if (news.data[key].hasOwnProperty("title")) {
             
@@ -205,12 +207,30 @@ function generateHTML() {
 //   console.log(content);
 // })();
 
-fetch('https://dev-api.mstars.mn/subscribe/subscriptions', {
-  method: 'POST',
-  headers: {
-    'Accept': 'application/json, text/plain, */*',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({email: 'test@gmail.com'})
-}).then(res => res.json())
-  .then(res => console.log(res));
+
+document.querySelector(".footer-btn").addEventListener('click', e=>{
+
+  let re  = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  
+  let email = document.getElementById("input-username").value
+  if (email.match(re)) {
+    fetch('https://dev-api.mstars.mn/subscribe/subscription/create', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({"email": email})
+    }).then(res => res.json())
+      .then(res => console.log(res));
+
+
+
+  }else{
+    
+
+
+
+  }
+  console.log(email);
+  })
