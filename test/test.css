@@ -1,0 +1,35 @@
+.circle{
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background-color: gray;
+    position: relative;
+
+}
+
+.ball{
+
+    width: 10px;
+    height: 10px;
+    border-radius: 20px;
+    background-color: black;
+    position: absolute;
+}
+
+#ball{
+    top: 50%;
+
+}
+#ball1{
+    left: 50%;
+}
+#ball2{
+    right: 30%;
+    top: 30%;
+    background-color: green;
+}
+#ball3{
+    background-color: red;
+    right: 30%;
+    top: 30%;
+}

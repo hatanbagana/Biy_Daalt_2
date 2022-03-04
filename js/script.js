@@ -2,7 +2,7 @@
 // then add callback function that includes when the window height scroll down to 100vh and add 'fixed-top' class on Navbar element.
 // For your mind: object.classList.add('class') this method is add class on selected element
 // e.target.scrollingElement.scrollTop use that method when track scrolling amount
-
+let sda = 0
 window.addEventListener("scroll", (e) => {
   // console.log(e.target.scrollingElement.scrollTop);
 
@@ -11,9 +11,44 @@ window.addEventListener("scroll", (e) => {
     e.target.scrollingElement.scrollTop < 650
   ) {
     // document.querySelector("nav").setAttribute("class", "fixed-top")
-    document.querySelector("nav").classList.remove("fixed-top");
+    if ( sda > 0) {
+      document.querySelector(".ss").remove()
+      sda = 0
+      
+    }
   } else {
-    document.querySelector("nav").classList.add("fixed-top");
+    sda = 1
+    document.querySelector(".navsda").innerHTML =  `
+    <nav class="ss navbar navbar-expand-lg navbar-light bg-white px-0 navbarbandi fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">{finsweet</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav d-flex align-items-center ">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/careers.html">Careers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/Services.html">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/blog.html">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/contact_us.html">Contact Us</a>
+              </li>
+              <li class="nav-itemm " id="navitemm">
+                <a class="nav-link active orange-btn c-orange" aria-current="page" href="work.html">Clone Project</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>`
   }
 });
 
@@ -112,3 +147,70 @@ function generateHTML() {
 
 // Add CLICK Event Listener on the button
 // Then using Fetch method POST input value to http://52.221.191.153/subscribe/subscription/create
+
+
+// let config = {
+//   method: 'POST',
+//   headers:{
+//     'Content-Type': 'application/json'
+//   },
+//   body: {
+//     email: 'test@gmail.com'
+//   }
+// }
+// fetch(`https://dev-api.mstars.mn/subscribe/subscriptions`, config).then(e => e.json()).then(e=>console.log(e)).catch(error => console.log(error))
+
+
+// // Example POST method implementation:
+// async function postData(url = 'https://dev-api.mstars.mn/subscribe/subscriptions', data = {}) {
+//   // Default options are marked with *
+//   const response = await fetch(url, {
+//     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+//     mode: 'cors', // no-cors, *cors, same-origin
+//     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+//     credentials: 'same-origin', // include, *same-origin, omit
+//     headers: {
+//       'Content-Type': 'application/json'
+//       // 'Content-Type': 'application/x-www-form-urlencoded',
+//     },
+//     redirect: 'follow', // manual, *follow, error
+//     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+//     body: {
+//       email: 'test@gmail.com'
+//       }
+//   });
+//   return response.json(); // parses JSON response into native JavaScript objects
+// }
+
+// postData('https://dev-api.mstars.mn/subscribe/subscriptions', { answer: 42 })
+//   .then(data => {
+//     console.log(data); // JSON data parsed by `data.json()` call
+//   });
+
+
+// (async () => {
+//   const rawResponse = await fetch('https://httpbin.org/post', {
+//     method: 'POST',
+//     mode: 'no-cors',
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json'
+//     },
+//     body: {
+//             email: 'test@gmail.com'
+//             }
+//   });
+//   const content = await rawResponse.json();
+
+//   console.log(content);
+// })();
+
+fetch('https://dev-api.mstars.mn/subscribe/subscriptions', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json, text/plain, */*',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({email: 'test@gmail.com'})
+}).then(res => res.json())
+  .then(res => console.log(res));
