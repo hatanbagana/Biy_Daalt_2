@@ -3,6 +3,9 @@
 // For your mind: object.classList.add('class') this method is add class on selected element
 // e.target.scrollingElement.scrollTop use that method when track scrolling amount
 let sda = 0
+
+
+console.log(document.querySelector("nav").style.width.value)
 window.addEventListener("scroll", (e) => {
   // console.log(e.target.scrollingElement.scrollTop);
 
