@@ -52,6 +52,7 @@ window.addEventListener("scroll", (e) => {
   }
 });
 
+
 // Add scrollDetect callback function on window.addEventlistener('scroll', callback) Listener
 
 // Define Play button variable
@@ -99,7 +100,7 @@ xhr.onreadystatechange = function () {
         `;
     });
 
-    
+
     for(let key in news.data){
         if (news.data[key].hasOwnProperty("title")) {
             
@@ -222,15 +223,35 @@ document.querySelector(".footer-btn").addEventListener('click', e=>{
       },
       body: JSON.stringify({"email": email})
     }).then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => console.log(res))
+      .then(e=>{
+        let footer_modal = ` 
+        <h2>You have successfully subscribed.</h2>`
 
+
+        document.querySelector(`.footer-modal`).innerHTML = footer_modal
+      })
 
 
   }else{
+
     
+        let footer_modal = ` 
+        <h2 style="color: red;" >error</h2>`
+
+
+
+      document.querySelector(`.footer-modal`).innerHTML = footer_modal
 
 
 
   }
   console.log(email);
   })
+
+  document.getElementById("input-username").addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+    	document.getElementById("footer-submit").submit();
+		return false;
+    }
+});

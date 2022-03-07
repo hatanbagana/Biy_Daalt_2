@@ -438,7 +438,9 @@ Gray:  #5B5B5B */
 
 
 /* FOOTER */
-
+.footer-modal h2{
+    color: green; padding: 50px 20px; display: flex; align-items: center; justify-content: center;
+}
 
 footer a{
     color: white;
